@@ -10,14 +10,13 @@ connectDB();
 
 const app = express();
 
-// CORS setup — you can replace with your frontend URL
-app.use(
-    cors({
-        origin: process.env.FRONTEND_URL || "*",
-        methods: ["GET", "POST", "PUT", "DELETE"],
-        credentials: true,
-    })
-);
+const FRONTEND_URL = process.env.FRONTEND_URL || "https://app-test-client.vercel.app";
+
+app.use(cors({
+    origin: FRONTEND_URL,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    credentials: true
+}));
 
 app.use(express.json());
 
